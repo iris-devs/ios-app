@@ -10,6 +10,9 @@ import SwiftUI
 
 struct MessagesView: View {
   @ObservedObject private var store = MessageStore()
+  @EnvironmentObject private var sessionStore: SessionStore
+  
+  @State var isFormVisible = false
 
   init() {
     UITableView.appearance().tableFooterView = UIView(frame: CGRect(x: 0, y: 0, width: 0, height: 1))
@@ -17,12 +20,30 @@ struct MessagesView: View {
   }
   
   var body: some View {
-    Group {
-      if store.messages.isEmpty {
-        NoDataView(text: "No news", imageName: "bolt.slash.fill")
-      } else {
-        NewsListView(news: store.messages.sorted(by: { $0.createdAt > $1.createdAt }))
+    NavigationView {
+      Group {
+        if store.messages.isEmpty {
+          NoDataView(text: "No news", imageName: "bolt.slash.fill")
+        } else {
+          NewsListView(news: store.messages.sorted(by: { $0.createdAt > $1.createdAt }))
+        }
       }
+      .navigationBarTitle("News", displayMode: .large)
+      .navigationBarItems(
+        trailing: Button(action: {
+          self.isFormVisible = true
+        }) {
+          HStack {
+            Image(systemName: "message.fill")
+              .resizable()
+              .frame(width: 16, height: 16)
+            Text("Ask question")
+          }
+        }.popover(isPresented: $isFormVisible) {
+          QuestionFormView(isVisible: self.$isFormVisible)
+            .environmentObject(self.sessionStore)
+        }
+      )
     }
   }
 }

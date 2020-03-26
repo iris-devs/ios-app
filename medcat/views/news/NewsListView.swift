@@ -19,7 +19,6 @@ struct NewsListView: View {
           .padding(.horizontal, 4)
       }
     }
-    .navigationBarTitle("News", displayMode: .large)
   }
 }
 

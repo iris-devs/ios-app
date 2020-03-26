@@ -10,8 +10,8 @@
 		7D9E65A70545A8E1C9A3DC20 /* Pods_medcat.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C7376B8F101A8458D978B46 /* Pods_medcat.framework */; };
 		DF4056E4242CB25B00FD3388 /* ScrollWithRefresh.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF4056E3242CB25B00FD3388 /* ScrollWithRefresh.swift */; };
 		DF4056E6242CC33900FD3388 /* AuthorDateRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF4056E5242CC33800FD3388 /* AuthorDateRow.swift */; };
+		DF4056E8242D038700FD3388 /* FiltersAndSortingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF4056E7242D038700FD3388 /* FiltersAndSortingView.swift */; };
 		DFA0D729242BC89B007F8FCF /* Formatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFA0D728242BC89B007F8FCF /* Formatter.swift */; };
-		DFA5529D242A2C2C004CA59D /* WithFloatingButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFA5529C242A2C2C004CA59D /* WithFloatingButton.swift */; };
 		DFA552A0242A3152004CA59D /* QuestionFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFA5529F242A3152004CA59D /* QuestionFormView.swift */; };
 		DFA552A3242A62D8004CA59D /* TextView in Frameworks */ = {isa = PBXBuildFile; productRef = DFA552A2242A62D8004CA59D /* TextView */; };
 		DFAD97CA2428DE7C00BAF22B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFAD97C92428DE7C00BAF22B /* AppDelegate.swift */; };
@@ -52,8 +52,8 @@
 		D72013FEBCFC61022E1938D1 /* Pods_medcat_medcatUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_medcat_medcatUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DF4056E3242CB25B00FD3388 /* ScrollWithRefresh.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollWithRefresh.swift; sourceTree = "<group>"; };
 		DF4056E5242CC33800FD3388 /* AuthorDateRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorDateRow.swift; sourceTree = "<group>"; };
+		DF4056E7242D038700FD3388 /* FiltersAndSortingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FiltersAndSortingView.swift; sourceTree = "<group>"; };
 		DFA0D728242BC89B007F8FCF /* Formatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Formatter.swift; sourceTree = "<group>"; };
-		DFA5529C242A2C2C004CA59D /* WithFloatingButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WithFloatingButton.swift; sourceTree = "<group>"; };
 		DFA5529F242A3152004CA59D /* QuestionFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionFormView.swift; sourceTree = "<group>"; };
 		DFAD97C62428DE7C00BAF22B /* IRIS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IRIS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DFAD97C92428DE7C00BAF22B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -158,7 +158,6 @@
 				DFCF0374242A690F005C3C47 /* MarkdownView.swift */,
 				DFE9D3F7242B672600AAABAC /* NoDataView.swift */,
 				DF4056E3242CB25B00FD3388 /* ScrollWithRefresh.swift */,
-				DFA5529C242A2C2C004CA59D /* WithFloatingButton.swift */,
 				DFE9D400242BC51A00AAABAC /* account */,
 				DFE9D401242BC52C00AAABAC /* news */,
 				DFE9D3FF242BC51000AAABAC /* question */,
@@ -188,6 +187,7 @@
 		DFE9D3FF242BC51000AAABAC /* question */ = {
 			isa = PBXGroup;
 			children = (
+				DF4056E7242D038700FD3388 /* FiltersAndSortingView.swift */,
 				DFE9D3FB242B9AD600AAABAC /* LikesView.swift */,
 				DFA5529F242A3152004CA59D /* QuestionFormView.swift */,
 				DFE9D3FD242B9C7C00AAABAC /* QuestionRowView.swift */,
@@ -360,9 +360,9 @@
 				DFA0D729242BC89B007F8FCF /* Formatter.swift in Sources */,
 				DFAD98062428E90B00BAF22B /* AccountView.swift in Sources */,
 				DFCF0375242A690F005C3C47 /* MarkdownView.swift in Sources */,
+				DF4056E8242D038700FD3388 /* FiltersAndSortingView.swift in Sources */,
 				DFAD98162429266700BAF22B /* NewsListView.swift in Sources */,
 				DF4056E4242CB25B00FD3388 /* ScrollWithRefresh.swift in Sources */,
-				DFA5529D242A2C2C004CA59D /* WithFloatingButton.swift in Sources */,
 				DFAD97CA2428DE7C00BAF22B /* AppDelegate.swift in Sources */,
 				DFAD980E2429145900BAF22B /* MessagesView.swift in Sources */,
 				DFE9D3FE242B9C7C00AAABAC /* QuestionRowView.swift in Sources */,
@@ -522,7 +522,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_ASSET_PATHS = "\"medcat/Preview Content\"";
 				DEVELOPMENT_TEAM = A9C85TZDC7;
 				ENABLE_PREVIEWS = YES;
@@ -547,7 +547,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_ASSET_PATHS = "\"medcat/Preview Content\"";
 				DEVELOPMENT_TEAM = A9C85TZDC7;
 				ENABLE_PREVIEWS = YES;

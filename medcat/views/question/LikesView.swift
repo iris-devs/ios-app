@@ -28,7 +28,7 @@ struct LikesView: View {
             .font(.footnote)
         }
       }
-      .foregroundColor(isLiked ? Color.gray : Color.blue)
+      .foregroundColor(isLiked ? Color.blue : Color.gray)
       .buttonStyle(BorderlessButtonStyle())
       .padding(10)
     }

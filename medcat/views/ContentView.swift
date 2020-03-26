@@ -10,7 +10,7 @@ import SwiftUI
 
 struct ContentView: View {
   @EnvironmentObject var session: SessionStore  
-  @State private var selection = 1
+  @State private var selection = 0
   
   func getUser() {
     session.listen()
@@ -20,12 +20,7 @@ struct ContentView: View {
     Group {
       if session.session != nil {
         TabView(selection: $selection) {
-          WithFloatingButton {
-//          NavigationView {
-            MessagesView()
-//            .navigationBarTitle("News")
-//          }
-          }
+          MessagesView()
           .tabItem {
             VStack {
               Image(systemName: "bolt.circle.fill")
@@ -33,9 +28,7 @@ struct ContentView: View {
             }
           }
           .tag(0)
-          WithFloatingButton {
-            QuestionsView()
-          }
+          QuestionsView()
           .tabItem {
             VStack {
               Image(systemName: "questionmark.circle.fill")

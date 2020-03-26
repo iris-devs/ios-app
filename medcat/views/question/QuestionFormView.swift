@@ -41,95 +41,101 @@ struct QuestionFormView: View {
   @EnvironmentObject private var sessionStore: SessionStore
   
   var body: some View {
-    ScrollView {
-      VStack(alignment: .leading, spacing: 20) {
-        if error != nil {
-          Text(error!)
-            .font(.body)
-            .foregroundColor(.red)
-        }
-        
-        VStack(alignment: .leading) {
-          HStack {
-            Text("Title".uppercased())
-              .font(.headline)
-            
-            Spacer()
-            Text("\(titleWordsCount) / 10 max words")
-              .font(.footnote)
-              .foregroundColor(titleWordsCount > 10 ? .red : .systemGray3)
+    NavigationView {
+      ScrollView {
+        VStack(alignment: .leading, spacing: 20) {
+          if error != nil {
+            Text(error!)
+              .font(.body)
+              .foregroundColor(.red)
           }
           
-          TextField("Enter title here...", text: $title)
-            .font(.body)
-          
-          Divider().padding(.top, 10)
-        }
-        
-        //      VStack(alignment: .leading) {
-        //        HStack {
-        //          Text("Category".uppercased())
-        //            .font(.headline)
-        //
-        //          Spacer()
-        //          Text("optional")
-        //            .font(.footnote)
-        //            .foregroundColor(.systemGray3)
-        //        }
-        //
-        //        Picker(selection: $category, label: EmptyView()) {
-        //          ForEach(0..<self.store.categories.count, id: \.self) { index in
-        //            Text(self.store.categories[index].title)
-        //          }
-        //        }.pickerStyle(SegmentedPickerStyle())
-        //
-        //        Divider().padding(.top, 10)
-        //      }
-        
-        VStack(alignment: .leading) {
-          HStack {
-            Text("Question".uppercased())
-              .font(.headline)
-            
-            Spacer()
-            Text("\(textWordsCount) / 100 max words")
-              .font(.footnote)
-              .foregroundColor(textWordsCount > 100 ? .red : .systemGray3)
-          }
-          
-          TextView("Enter your question here...", text: $text)
-            .height(150)
-          
-          Divider().padding(.top, 10)
-        }
-        
-        VStack {
-          if saving {
-            ActivityIndicator()
-          }
-
-          Button(action: {
-            self.save()
-          }) {
+          VStack(alignment: .leading) {
             HStack {
-              Text("Submit")
-                .frame(minWidth: 0, maxWidth: .infinity)
-                .frame(height: 44)
-                .foregroundColor(.white)
-                .font(.body)
-                .background(Color.blue)
-                .cornerRadius(4)
+              Text("Title".uppercased())
+                .font(.headline)
+              
+              Spacer()
+              Text("\(titleWordsCount) / 10 max words")
+                .font(.footnote)
+                .foregroundColor(titleWordsCount > 10 ? .red : .systemGray3)
             }
-          }.disabled(self.saving)
+            
+            TextField("Enter title here...", text: $title)
+              .font(.body)
+            
+            Divider().padding(.top, 10)
+          }
+          
+          //      VStack(alignment: .leading) {
+          //        HStack {
+          //          Text("Category".uppercased())
+          //            .font(.headline)
+          //
+          //          Spacer()
+          //          Text("optional")
+          //            .font(.footnote)
+          //            .foregroundColor(.systemGray3)
+          //        }
+          //
+          //        Picker(selection: $category, label: EmptyView()) {
+          //          ForEach(0..<self.store.categories.count, id: \.self) { index in
+          //            Text(self.store.categories[index].title)
+          //          }
+          //        }.pickerStyle(SegmentedPickerStyle())
+          //
+          //        Divider().padding(.top, 10)
+          //      }
+          
+          VStack(alignment: .leading) {
+            HStack {
+              Text("Question".uppercased())
+                .font(.headline)
+              
+              Spacer()
+              Text("\(textWordsCount) / 100 max words")
+                .font(.footnote)
+                .foregroundColor(textWordsCount > 100 ? .red : .systemGray3)
+            }
+            
+            TextView("Enter your question here...", text: $text)
+              .height(150)
+            
+            Divider().padding(.top, 10)
+          }
+          
+          VStack {
+            if saving {
+              ActivityIndicator()
+            }
+            
+            Button(action: {
+              self.save()
+            }) {
+              HStack {
+                Text("Submit")
+                  .frame(minWidth: 0, maxWidth: .infinity)
+                  .frame(height: 44)
+                  .foregroundColor(.white)
+                  .font(.body)
+                  .background(Color.blue)
+                  .cornerRadius(4)
+              }
+            }.disabled(self.saving)
+          }
+          
+          Spacer()
         }
-        
-        Spacer()
+          
+        .padding(20)
       }
-        
-      .padding(20)
+      .navigationBarItems(trailing: Button(action: {
+        self.isVisible = false
+      }) {
+        Text("Cancel")
+      })
+        .navigationBarTitle("Ask question")
     }
-    .onAppear(perform: store.loadCategories)
-    .navigationBarTitle("Ask question")
   }
   
   func save() {
@@ -151,18 +157,18 @@ struct QuestionFormView: View {
       if let error = error {
         self.error = error.localizedDescription
         self.saving = false
-
+        
         return
       }
-
+      
       self.store.load() { err in
         self.saving = false
-
+        
         if let err = err {
           self.error = err.localizedDescription
           return
         }
-
+        
         self.isVisible = false
       }
     }
