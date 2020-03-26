@@ -21,7 +21,10 @@ struct ContentView: View {
       if session.session != nil {
         TabView(selection: $selection) {
           WithFloatingButton {
+//          NavigationView {
             MessagesView()
+//            .navigationBarTitle("News")
+//          }
           }
           .tabItem {
             VStack {

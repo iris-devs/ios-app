@@ -27,25 +27,35 @@ struct WithFloatingButton<ChildView: View>: View {
           EmptyView()
         }
         
-        HStack {
-          Button(action: {
-            self.isVisible = true
-          }) {
-            HStack {
-              Image(systemName: "message.fill")
-                .resizable()
-                .frame(width: 24, height: 24)
-                .foregroundColor(.white)
-                .padding(20)
-            }
-            .frame(width: 48, height: 48)
-            .background(Color.blue)
-            .clipShape(Circle())
-            .shadow(radius: 5)
-          }
-        }
-        .padding(20)
+//        HStack {
+//          Button(action: {
+//            self.isVisible = true
+//          }) {
+//            HStack {
+//              Image(systemName: "message.fill")
+//                .resizable()
+//                .frame(width: 24, height: 24)
+//                .foregroundColor(.white)
+//                .padding(20)
+//            }
+//            .frame(width: 48, height: 48)
+//            .background(Color.blue)
+//            .clipShape(Circle())
+//            .shadow(radius: 5)
+//          }
+//        }
+//        .padding(20)
       }
+      .navigationBarItems(trailing: Button(action: {
+        self.isVisible = true
+      }) {
+        HStack {
+          Image(systemName: "message.fill")
+          .resizable()
+          .frame(width: 16, height: 16)
+          Text("Ask question")
+        }
+      })
     }
   }
 }

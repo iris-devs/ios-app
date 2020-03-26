@@ -43,7 +43,6 @@ struct QuestionsView: View {
       }
     }
     .onAppear(perform: {
-//      self.store.load()
       self.store.listen()
     })
     .navigationBarTitle("Questions")

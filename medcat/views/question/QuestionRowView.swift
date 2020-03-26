@@ -10,13 +10,14 @@ import SwiftUI
 
 struct QuestionRowView: View {
   var question: Question
+  @State private var isAnswerVisible = false
   
   init(_ question: Question) {
     self.question = question
   }
   
   var body: some View {
-    VStack {
+    VStack(alignment: .leading) {
       HStack(alignment: .top) {
         VStack(alignment: .leading, spacing: 10) {
           Text(question.title)
@@ -24,20 +25,12 @@ struct QuestionRowView: View {
           
           Text(question.body)
             .font(.subheadline)
-            .lineLimit(5)
           
           if question.createdAt != nil {
             HStack {
               Text(Formatter.date.string(from: question.createdAt!))
                 .font(.caption)
                 .foregroundColor(.secondary)
-              
-              //            Spacer()
-              //            if message.author != nil {
-              //              Text(message.author!)
-              //                .font(.caption)
-              //                .foregroundColor(.secondary)
-              //            }
             }
           }
         }
@@ -46,6 +39,19 @@ struct QuestionRowView: View {
         LikesView(likes: question.likes)
       }
       .padding(.vertical, 5)
+      
+      if question.answer != nil {
+        VStack(alignment: .leading, spacing: 10) {
+          AuthorDateRow(author: question.answer!.author, date: question.answer!.createdAt)
+          Text(question.answer!.body)
+            .font(.subheadline)
+        }
+        .padding(.horizontal, 20)
+        .padding(.vertical, 15)
+        .cornerRadius(10)
+        .background(Color.yellow.opacity(0.1))
+      }
+      
       Spacer()
     }
   }
@@ -61,7 +67,12 @@ struct QuestionRowView_Previews: PreviewProvider {
       body: """
 Question multiline
 body ...
-"""
+""",
+      answer: Answer(
+        author: "coliquio GmbH",
+        body: "Answer text",
+        createdAt: Date()
+      )
     ))
   }
 }

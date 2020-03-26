@@ -95,7 +95,7 @@ struct Question: Identifiable {
   var body: String
   var likes: Int = 0
   var createdAt: Date?
-  var answers: [Answer] = []
+  var answer: Answer?
   
   func toDictionary() -> Dictionary<String, String> {
     return [
@@ -115,8 +115,19 @@ struct Question: Identifiable {
     
     let likes = documentSnapshot.get("likes") as? Int ?? 0
     let createdAt = (documentSnapshot.get("createdAt") as? Timestamp)?.dateValue()
-//    let answers = documentSnapshot.get
     
+    var answer: Answer? = nil
+    
+    if let comment = documentSnapshot.get("comment") as? Dictionary<String, Any> {
+      if let body = comment["body"] as? String, let authorName = comment["authorName"] as? String {
+        answer = Answer(
+          author: authorName,
+          body: body,
+          createdAt: (comment["createdAt"] as? Timestamp)?.dateValue()
+        )
+      }
+    }
+
     return Question(
       id: documentSnapshot.documentID,
       uid: uid,
@@ -124,14 +135,14 @@ struct Question: Identifiable {
       category: category,
       body: body,
       likes: likes,
-      createdAt: createdAt
+      createdAt: createdAt,
+      answer: answer
     )
   }
 }
 
-struct Answer: Identifiable {
-  var id: String
+struct Answer {
   var author: String
   var body: String
-  var createdAt: Date
+  var createdAt: Date?
 }
