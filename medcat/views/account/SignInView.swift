@@ -23,7 +23,7 @@ struct SignInView: View {
     
     session.signIn(email: email, password: password) { result, error in
       self.isLoading = false
-
+      
       if let error = error {
         self.error = error.localizedDescription
       }
@@ -35,65 +35,82 @@ struct SignInView: View {
   }
   
   var body: some View {
-    VStack {
-      Image("logo")
-        .resizable()
-        .scaledToFit()
-        .frame(maxWidth: .infinity)
-        .padding(.top, 50)
-      
-//      Text("Please sign-in")
-//        .font(.title)
-//        .foregroundColor(.secondary)
-      
-      if error != "" {
-        Text(error)
-          .font(.body)
-          .foregroundColor(.red)
-          .padding(.vertical, 10)
-      }
-      
+    ScrollView {
       VStack {
-        TextField("E-mail", text: $email)
-          .textContentType(.emailAddress)
-          .keyboardType(.emailAddress)
-          .autocapitalization(.none)
-          .font(.body)
-          .padding(10)
-        Divider()
+        Image("logo")
+          .resizable()
+          .scaledToFit()
+          .frame(maxWidth: .infinity)
+          .padding(.top, 50)
         
-        SecureField("Password", text: $password)
-          .font(.body)
-          .padding(10)
-        Divider()
-      }.padding(.bottom, 15)
-      
-      VStack(spacing: 10) {
-        Button(action: signIn) {
-          HStack(spacing: 5) {
-            if isLoading {
-              ActivityIndicator()
-            }
+        //      Text("Please sign-in")
+        //        .font(.title)
+        //        .foregroundColor(.secondary)
+        
+        if error != "" {
+          Text(error)
+            .font(.body)
+            .foregroundColor(.red)
+            .padding(.vertical, 10)
+        }
+        
+        VStack {
+          HStack(spacing: 10.0) {
+            Image(systemName: "envelope")
+              .resizable()
+              .foregroundColor(.gray)
+              .scaledToFit()
+              .frame(width: 12, height: 12)
             
-            Text("Sign in")
-              .frame(minWidth: 0, maxWidth: .infinity)
-              .frame(height: 44)
-              .foregroundColor(.white)
+            TextField("E-mail", text: $email)
+              .textContentType(.emailAddress)
+              .keyboardType(.emailAddress)
+              .autocapitalization(.none)
               .font(.body)
-              .background(Color.blue)
-              .cornerRadius(4)
           }
-        }
-        .disabled(isLoading)
+          .padding(10)
+          Divider()
+          
+          HStack(spacing: 10.0) {
+            Image(systemName: "lock.shield")
+              .resizable()
+              .foregroundColor(.gray)
+              .scaledToFit()
+              .frame(width: 12, height: 12)
+            
+            SecureField("Password", text: $password)
+              .font(.body)
+          }
+          .padding(10)
+          Divider()
+        }.padding(.bottom, 15)
         
-        Button(action: forgotPassword) {
-          Text("Forgot password?")
+        VStack(spacing: 10) {
+          Button(action: signIn) {
+            HStack(spacing: 5) {
+              if isLoading {
+                ActivityIndicator()
+              }
+              
+              Text("Sign in")
+                .frame(minWidth: 0, maxWidth: .infinity)
+                .frame(height: 44)
+                .foregroundColor(.white)
+                .font(.body)
+                .background(Color.blue)
+                .cornerRadius(4)
+            }
+          }
+          .disabled(isLoading)          
+//          Button(action: forgotPassword) {
+//            Text("Forgot password?")
+//          }
+//          .foregroundColor(.gray)
+//          .disabled(isLoading)
         }
-        .foregroundColor(.gray)
-        .disabled(isLoading)
+        
+        Spacer()
       }
-      
-      Spacer()
     }.padding(20)
   }
 }
