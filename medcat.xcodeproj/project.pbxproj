@@ -152,16 +152,16 @@
 		DFAD980F242914FC00BAF22B /* views */ = {
 			isa = PBXGroup;
 			children = (
+				DF4056E5242CC33800FD3388 /* AuthorDateRow.swift */,
 				DFAD97CD2428DE7C00BAF22B /* ContentView.swift */,
+				DFA0D728242BC89B007F8FCF /* Formatter.swift */,
 				DFCF0374242A690F005C3C47 /* MarkdownView.swift */,
 				DFE9D3F7242B672600AAABAC /* NoDataView.swift */,
+				DF4056E3242CB25B00FD3388 /* ScrollWithRefresh.swift */,
 				DFA5529C242A2C2C004CA59D /* WithFloatingButton.swift */,
 				DFE9D400242BC51A00AAABAC /* account */,
 				DFE9D401242BC52C00AAABAC /* news */,
 				DFE9D3FF242BC51000AAABAC /* question */,
-				DFA0D728242BC89B007F8FCF /* Formatter.swift */,
-				DF4056E3242CB25B00FD3388 /* ScrollWithRefresh.swift */,
-				DF4056E5242CC33800FD3388 /* AuthorDateRow.swift */,
 			);
 			path = views;
 			sourceTree = "<group>";

@@ -16,12 +16,12 @@ struct AuthorDateRow: View {
     HStack {
       if date != nil {
         Text(Formatter.date.string(from: date!))
-          .font(.subheadline)
+          .font(.footnote)
           .foregroundColor(.gray)
       }
       Spacer()
       Text(author)
-        .font(.subheadline)
+        .font(.footnote)
         .foregroundColor(.gray)
     }
   }

@@ -15,12 +15,14 @@ class QuestionStore: ObservableObject {
   
   let categoryCollection = Firestore.firestore().collection("categories")
   let questionCollection = Firestore.firestore().collection("questions")
+  let userCollection = Firestore.firestore().collection("users")
   
   var questionRef: DocumentReference? = nil
   var questionListener: ListenerRegistration?
   
   @Published var questions = [Question]()
   @Published var categories = [Category]()
+  @Published var likes = [String]()
   
   var listener: ListenerRegistration?
   
@@ -73,6 +75,32 @@ class QuestionStore: ObservableObject {
       }
       
       self.load()
+    }
+  }
+  
+  func like(_ questionId: String, uid: String, completion: ((Error?) -> ())? = nil) {
+    likes.append(questionId)
+    
+    userCollection.document(uid).collection("likes").document(questionId).setData([
+      "createdAt": FieldValue.serverTimestamp()
+    ], completion: completion)
+  }
+  
+  func dislike(_ questionId: String, uid: String, completion: ((Error?) -> ())? = nil) {
+    likes = likes.filter { $0 != questionId }    
+    userCollection.document(uid).collection("likes").document(questionId).delete(completion: completion)
+  }
+  
+  func reloadLikes(_ uid: String, completion: ((Error?) -> ())? = nil) {
+    userCollection.document(uid).collection("likes").getDocuments { querySnapshot, err in
+      if let err = err {
+        print("Error: \(err)")
+        completion?(err)
+        return
+      }
+
+      self.likes = querySnapshot?.documents.map { $0.documentID } ?? []
+      completion?(nil)
     }
   }
   

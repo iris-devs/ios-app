@@ -10,7 +10,7 @@ import SwiftUI
 
 struct ContentView: View {
   @EnvironmentObject var session: SessionStore  
-  @State private var selection = 0
+  @State private var selection = 1
   
   func getUser() {
     session.listen()
