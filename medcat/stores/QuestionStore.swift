@@ -81,13 +81,34 @@ class QuestionStore: ObservableObject {
   func like(_ questionId: String, uid: String, completion: ((Error?) -> ())? = nil) {
     likes.append(questionId)
     
+    self.questions = self.questions.map { question in
+      if question.id != questionId {
+        return question
+      }
+      var newQuestion = question
+      newQuestion.likes += 1
+      
+      return newQuestion
+    }
+    
     userCollection.document(uid).collection("likes").document(questionId).setData([
       "createdAt": FieldValue.serverTimestamp()
     ], completion: completion)
   }
   
   func dislike(_ questionId: String, uid: String, completion: ((Error?) -> ())? = nil) {
-    likes = likes.filter { $0 != questionId }    
+    likes = likes.filter { $0 != questionId }
+        
+    self.questions = self.questions.map { question in
+      if question.id != questionId {
+        return question
+      }
+      var newQuestion = question
+      newQuestion.likes -= 1
+      
+      return newQuestion
+    }
+    
     userCollection.document(uid).collection("likes").document(questionId).delete(completion: completion)
   }
   
