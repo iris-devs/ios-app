@@ -11,6 +11,7 @@
 		DF4056E4242CB25B00FD3388 /* ScrollWithRefresh.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF4056E3242CB25B00FD3388 /* ScrollWithRefresh.swift */; };
 		DF4056E6242CC33900FD3388 /* AuthorDateRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF4056E5242CC33800FD3388 /* AuthorDateRow.swift */; };
 		DF4056E8242D038700FD3388 /* FiltersAndSortingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF4056E7242D038700FD3388 /* FiltersAndSortingView.swift */; };
+		DF4056EA242D176900FD3388 /* KeyboardResponder.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF4056E9242D176900FD3388 /* KeyboardResponder.swift */; };
 		DFA0D729242BC89B007F8FCF /* Formatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFA0D728242BC89B007F8FCF /* Formatter.swift */; };
 		DFA552A0242A3152004CA59D /* QuestionFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFA5529F242A3152004CA59D /* QuestionFormView.swift */; };
 		DFA552A3242A62D8004CA59D /* TextView in Frameworks */ = {isa = PBXBuildFile; productRef = DFA552A2242A62D8004CA59D /* TextView */; };
@@ -53,6 +54,7 @@
 		DF4056E3242CB25B00FD3388 /* ScrollWithRefresh.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollWithRefresh.swift; sourceTree = "<group>"; };
 		DF4056E5242CC33800FD3388 /* AuthorDateRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorDateRow.swift; sourceTree = "<group>"; };
 		DF4056E7242D038700FD3388 /* FiltersAndSortingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FiltersAndSortingView.swift; sourceTree = "<group>"; };
+		DF4056E9242D176900FD3388 /* KeyboardResponder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardResponder.swift; sourceTree = "<group>"; };
 		DFA0D728242BC89B007F8FCF /* Formatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Formatter.swift; sourceTree = "<group>"; };
 		DFA5529F242A3152004CA59D /* QuestionFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionFormView.swift; sourceTree = "<group>"; };
 		DFAD97C62428DE7C00BAF22B /* IRIS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IRIS.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -108,6 +110,14 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		DF4056EB242D177500FD3388 /* utils */ = {
+			isa = PBXGroup;
+			children = (
+				DF4056E9242D176900FD3388 /* KeyboardResponder.swift */,
+			);
+			path = utils;
+			sourceTree = "<group>";
+		};
 		DFAD97BD2428DE7C00BAF22B = {
 			isa = PBXGroup;
 			children = (
@@ -130,12 +140,13 @@
 			isa = PBXGroup;
 			children = (
 				DFAD97CF2428DE7D00BAF22B /* Assets.xcassets */,
-				DFAD981C24294A1900BAF22B /* delegates */,
+				DFAD97D12428DE7D00BAF22B /* Preview Content */,
 				DFAD98072428EAB900BAF22B /* GoogleService-Info.plist */,
 				DFAD97D72428DE7D00BAF22B /* Info.plist */,
 				DFAD97D42428DE7D00BAF22B /* LaunchScreen.storyboard */,
-				DFAD97D12428DE7D00BAF22B /* Preview Content */,
+				DFAD981C24294A1900BAF22B /* delegates */,
 				DFAD98102429190100BAF22B /* stores */,
+				DF4056EB242D177500FD3388 /* utils */,
 				DFAD980F242914FC00BAF22B /* views */,
 			);
 			path = medcat;
@@ -375,6 +386,7 @@
 				DFAD98122429205000BAF22B /* MessageView.swift in Sources */,
 				DFE9D3F8242B672600AAABAC /* NoDataView.swift in Sources */,
 				DFAD98002428E25100BAF22B /* SessionStore.swift in Sources */,
+				DF4056EA242D176900FD3388 /* KeyboardResponder.swift in Sources */,
 				DFAD97CE2428DE7C00BAF22B /* ContentView.swift in Sources */,
 				DFAD98042428E5E300BAF22B /* SignInView.swift in Sources */,
 				DFAD98232429690500BAF22B /* UserProfileSectionView.swift in Sources */,
@@ -522,7 +534,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 6;
+				CURRENT_PROJECT_VERSION = 7;
 				DEVELOPMENT_ASSET_PATHS = "\"medcat/Preview Content\"";
 				DEVELOPMENT_TEAM = A9C85TZDC7;
 				ENABLE_PREVIEWS = YES;
@@ -547,7 +559,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 6;
+				CURRENT_PROJECT_VERSION = 7;
 				DEVELOPMENT_ASSET_PATHS = "\"medcat/Preview Content\"";
 				DEVELOPMENT_TEAM = A9C85TZDC7;
 				ENABLE_PREVIEWS = YES;

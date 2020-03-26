@@ -16,6 +16,7 @@ struct SignInView: View {
   @State var isLoading: Bool = false
   
   @EnvironmentObject var session: SessionStore
+  @ObservedObject var keyboard = KeyboardResponder()
   
   func signIn() {
     isLoading = true
@@ -101,7 +102,7 @@ struct SignInView: View {
                 .cornerRadius(4)
             }
           }
-          .disabled(isLoading)          
+          .disabled(isLoading)
 //          Button(action: forgotPassword) {
 //            Text("Forgot password?")
 //          }
@@ -110,8 +111,9 @@ struct SignInView: View {
         }
         
         Spacer()
-      }
-    }.padding(20)
+      }.padding(20)
+    }
+    .padding(.bottom, keyboard.currentHeight)
   }
 }
 

@@ -48,7 +48,8 @@ struct ContentView: View {
       } else {
         SignInView()
       }
-    }.onAppear(perform: getUser)
+    }
+    .onAppear(perform: getUser)
   }
 }
 

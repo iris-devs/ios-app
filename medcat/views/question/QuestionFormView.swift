@@ -39,6 +39,7 @@ struct QuestionFormView: View {
   
   @ObservedObject private var store = QuestionStore.shared
   @EnvironmentObject private var sessionStore: SessionStore
+  @ObservedObject var keyboard = KeyboardResponder()
   
   var body: some View {
     NavigationView {
@@ -135,6 +136,7 @@ struct QuestionFormView: View {
         Text("Cancel")
       })
         .navigationBarTitle("Ask question")
+        .padding(.bottom, keyboard.currentHeight)
     }
   }
   
