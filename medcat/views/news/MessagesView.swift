@@ -13,17 +13,18 @@ struct MessagesView: View {
   @EnvironmentObject private var sessionStore: SessionStore
   
   @State var isFormVisible = false
-
+    
   init() {
     UITableView.appearance().tableFooterView = UIView(frame: CGRect(x: 0, y: 0, width: 0, height: 1))
     self.store.load()
   }
+    
   
   var body: some View {
     NavigationView {
       Group {
         if store.messages.isEmpty {
-          NoDataView(text: "No news", imageName: "bolt.slash.fill")
+          NoDataView(text: "No News", imageName: "bolt.slash.fill")
         } else {
           NewsListView(news: store.messages.sorted(by: { $0.createdAt > $1.createdAt }))
         }
@@ -37,7 +38,7 @@ struct MessagesView: View {
             Image(systemName: "message.fill")
               .resizable()
               .frame(width: 16, height: 16)
-            Text("Ask question")
+            Text("Ask Question")
           }
         }.popover(isPresented: $isFormVisible) {
           QuestionFormView(isVisible: self.$isFormVisible)

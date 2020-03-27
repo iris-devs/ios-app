@@ -63,7 +63,7 @@ struct SignInView: View {
               .scaledToFit()
               .frame(width: 12, height: 12)
             
-            TextField("E-mail", text: $email)
+            TextField("E-Mail", text: $email)
               .textContentType(.emailAddress)
               .keyboardType(.emailAddress)
               .autocapitalization(.none)
@@ -93,7 +93,7 @@ struct SignInView: View {
                 ActivityIndicator()
               }
               
-              Text("Sign in")
+              Text("Sign In")
                 .frame(minWidth: 0, maxWidth: .infinity)
                 .frame(height: 44)
                 .foregroundColor(.white)

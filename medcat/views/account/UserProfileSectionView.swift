@@ -30,6 +30,6 @@ struct UserProfileSectionView: View {
 
 struct UserProfileSectionView_Previews: PreviewProvider {
     static var previews: some View {
-      UserProfileSectionView(title: "Ogranisation", text: "coliquio GmbH")
+      UserProfileSectionView(title: "Organisation", text: "coliquio GmbH")
     }
 }

@@ -1,0 +1,38 @@
+/* 
+  Localizable.strings
+  medcat
+
+  Created by Bissinger on 27.03.20.
+  Copyright © 2020 Vitali Stsepaniuk. All rights reserved.
+*/
+
+"My Account" = "Mein Konto";
+"E-Mail" = "E-Mail";
+"Password" = "Passwort";
+"Sign In" = "Anmelden";
+"Sign Out" = "Abmelden";
+"State" = "Staat";
+
+"News" = "Neuigkeiten";
+"No News" = "Keine Neuigkeiten";
+
+"Questions" = "Fragen";
+"No Questions" = "Keine Fragen";
+
+"Ask Question" = "Frage stellen";
+
+"Titel" = "Titel";
+"Enter Title here..." = "Überschrift eingeben";
+"Question" = "Frage";
+"Enter Question here..." = "Frage eingeben";
+"Submit Question" = "Frage stellen";
+
+"Filter" = "Einblenden";
+"All" = "Alle";
+"Only Answered" = "Nur Beantwortete";
+"Only Mine" = "Nur Meine";
+"Sort Order" = "Sortieren";
+"Most Recent" = "Neueste Zuerst";
+"Most Liked" = "Beliebte Zuerst";
+"Questionslist Settings" = "Filtern";
+"Apply" = "Anwenden";

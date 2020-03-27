@@ -62,7 +62,7 @@ struct QuestionFormView: View {
                 .foregroundColor(titleWordsCount > 10 ? .red : .systemGray3)
             }
             
-            TextField("Enter title here...", text: $title)
+            TextField("Enter Title here...", text: $title)
               .font(.body)
             
             Divider().padding(.top, 10)
@@ -99,7 +99,7 @@ struct QuestionFormView: View {
                 .foregroundColor(textWordsCount > 100 ? .red : .systemGray3)
             }
             
-            TextView("Enter your question here...", text: $text)
+            TextView("Enter Question here...", text: $text)
               .height(150)
             
             Divider().padding(.top, 10)
@@ -114,7 +114,7 @@ struct QuestionFormView: View {
               self.save()
             }) {
               HStack {
-                Text("Submit")
+                Text("Submit Question")
                   .frame(minWidth: 0, maxWidth: .infinity)
                   .frame(height: 44)
                   .foregroundColor(.white)

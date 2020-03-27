@@ -55,7 +55,7 @@ struct QuestionsView: View {
     NavigationView {
       VStack {
         if filteredQuestions.isEmpty {
-          NoDataView(text: "No questions")
+          NoDataView(text: "No Questions")
         } else {
           List(filteredQuestions) { question in
             QuestionRowView(
@@ -90,7 +90,7 @@ struct QuestionsView: View {
             Image(systemName: "message.fill")
               .resizable()
               .frame(width: 16, height: 16)
-            Text("Ask question")
+            Text("Ask Question")
           }
         }.popover(isPresented: $isFormVisible) {
           QuestionFormView(isVisible: self.$isFormVisible)

@@ -17,29 +17,29 @@ struct FiltersAndSortingView: View {
     NavigationView {
       VStack {
         Form {
-          Section(header: Text("Filter questions")) {
+          Section(header: Text("Filter")) {
             Picker("", selection: $filter) {
               Text("All").tag(0)
-              Text("Answered").tag(1)
-              Text("My").tag(2)
+              Text("Only Answered").tag(1)
+              Text("Only Mine").tag(2)
             }
             .pickerStyle(SegmentedPickerStyle())
           }
           
-          Section(header: Text("Sorting by")) {
+          Section(header: Text("Sort Order")) {
             Picker("", selection: $sorting) {
-              Text("Created date").tag(0)
-              Text("Likes").tag(1)
+              Text("Most Recent").tag(0)
+              Text("Most Liked").tag(1)
             }
             .pickerStyle(SegmentedPickerStyle())
           }
         }
       }
-      .navigationBarTitle("Filtering settings")
+      .navigationBarTitle("Questionslist Settings")
       .navigationBarItems(trailing: Button(action: {
         self.isVisible = false
       }) {
-        Text("Save")
+        Text("Apply")
       })
     }
   }

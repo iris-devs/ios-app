@@ -21,7 +21,7 @@ struct AccountView: View {
             EmptyView()
           }
         }
-      }.navigationBarTitle("My account")
+      }.navigationBarTitle("My Account")
     }
   }
 }

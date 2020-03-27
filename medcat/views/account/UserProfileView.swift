@@ -43,7 +43,7 @@ struct UserProfileView: View {
         }
 
         VStack(alignment: .leading, spacing: 0) {
-          UserProfileSectionView(title: "Email", text: user.email!)
+          UserProfileSectionView(title: "E-Mail", text: user.email!)
           if user.org != nil {
             UserProfileSectionView(title: "Organisation", text: user.org!)
           }
@@ -56,7 +56,7 @@ struct UserProfileView: View {
         HStack(spacing: 0) {
           Spacer()
           Button(action: signOut) {
-            Text("Sign out")
+            Text("Sign Out")
               .foregroundColor(.gray)
               .padding(10)
           }
@@ -64,7 +64,7 @@ struct UserProfileView: View {
         }
         .frame(minWidth: 0, maxWidth: .infinity)
       }.padding(20)
-    }.navigationBarTitle("My account")
+    }.navigationBarTitle("My Account")
   }
 }
 
