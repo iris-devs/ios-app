@@ -22,6 +22,7 @@ struct ChangePasswordForm: View {
     
     session.changePassword(passwordViewModel.password) { error in
       if let error = error {
+        self.isErrorVisible = true
         self.error = error
         return
       }
