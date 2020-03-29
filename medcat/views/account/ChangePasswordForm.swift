@@ -10,30 +10,43 @@ import SwiftUI
 
 struct ChangePasswordForm: View {
   @State private var error: Error? = nil
+  @State private var isErrorVisible: Bool = false
   @ObservedObject private var passwordViewModel = PasswordViewModel()
 
   @Binding var isVisible: Bool
   @EnvironmentObject var session: SessionStore
 
   func save() {
+    self.error = nil
     guard passwordViewModel.isValid else { return }
     
-    print("Test")
-    self.isVisible = false
+    session.changePassword(passwordViewModel.password) { error in
+      if let error = error {
+        self.error = error
+        return
+      }
+
+      self.isVisible = false
+    }
   }
   
   var body: some View {
     NavigationView {
       Form {
-        Section(header: Text("Enter your new password"), footer: Text(passwordViewModel.passwordMessage).foregroundColor(.red)) {
+        Section(
+          header: Text("Enter your new password"),
+          footer: Text(passwordViewModel.passwordMessage).foregroundColor(.red)
+        ) {
           SecureField("New Password", text: $passwordViewModel.password)
           SecureField("Confirm Password", text: $passwordViewModel.passwordConfirm)
+        }.alert(isPresented: $isErrorVisible) {
+          Alert(title: Text(self.error?.localizedDescription ?? "Unknown error"))
         }
       }
       .navigationBarTitle("Change Password")
       .navigationBarItems(
         leading: Button("Cancel") { self.isVisible = false },
-        trailing: Button("Save", action: self.save)
+        trailing: Button("Save", action: self.save).disabled(!passwordViewModel.isValid)
       )
     }
   }
