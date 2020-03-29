@@ -22,7 +22,7 @@ class PasswordViewModel: ObservableObject {
   @Published var passwordConfirm = ""
   @Published var passwordMessage = ""
   @Published var isValid = false
-
+  
   private var cancellableSet: Set<AnyCancellable> = []
   
   init() {
@@ -31,15 +31,15 @@ class PasswordViewModel: ObservableObject {
       .map { passwordCheck in
         switch passwordCheck {
           case .empty:
-          return "Password must not be empty"
+            return "Password must not be empty"
           case .noMatch:
-          return "Passwords do not match"
+            return "Passwords do not match"
           case .notStrongEnough:
-          return "Password not strong enough"
+            return "Password not strong enough"
           default:
-          return ""
+            return ""
         }
-      }
+    }
     .assign(to: \.passwordMessage, on: self)
     .store(in: &cancellableSet)
     
@@ -77,13 +77,13 @@ class PasswordViewModel: ObservableObject {
     strengthPublisher
       .map { strength in
         switch strength {
-        case .reasonable, .strong, .veryStrong:
-          return true
-        default:
-          return false
+          case .reasonable, .strong, .veryStrong:
+            return true
+          default:
+            return false
         }
-      }
-      .eraseToAnyPublisher()
+    }
+    .eraseToAnyPublisher()
   }
   
   private var isValidPublisher: AnyPublisher<PasswordCheck, Never> {
@@ -98,10 +98,9 @@ class PasswordViewModel: ObservableObject {
         else if (!passwordIsStrongEnough) {
           return .notStrongEnough
         }
-        else {
-          return .valid
-        }
-      }
-      .eraseToAnyPublisher()
+        
+        return .valid
+    }
+    .eraseToAnyPublisher()
   }
 }

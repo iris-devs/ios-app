@@ -11,71 +11,52 @@ import SwiftUIX
 
 struct QuestionFormView: View {
   @Binding var isVisible: Bool
-  @State var title: String = ""
-  
-  @State var titleWords = 0
-  @State var textWords = 0
-  
-  @State var text: String = ""
-    
-  @State var category = -1
-  @State var errorTitle: String?
-  @State var errorQuestion: String?
-  @State var saving: Bool = false
-  @State var error: String? = nil
-  
-  @ObservedObject private var store = QuestionStore.shared
   @EnvironmentObject private var sessionStore: SessionStore
+  @ObservedObject private var store = QuestionStore.shared
   @ObservedObject var keyboard = KeyboardResponder()
+  
+  @State var saving: Bool = false
+  @State var text: String = ""
+  @State var title: String = ""
   
   var body: some View {
     NavigationView {
       Form {
-        Section(header: Text("Title"), footer: WordCounter(text: title, max: 10, count: $titleWords)) {
+        Section(
+          header: Text("Title"),
+          footer: QuestionValidationMessage(text: title, max: 10)
+        ) {
           TextField("Enter Title here...", text: $title)
         }
         
-        Section(header: Text("Question"), footer: WordCounter(text: text, max: 100, count: $textWords)) {
+        Section(
+          header: Text("Question"),
+          footer: QuestionValidationMessage(text: text, max: 100)
+        ) {
           TextView("Enter Question here...", text: $text)
             .frame(height: 100)
         }
-        
-        VStack {
-          if saving {
-            ActivityIndicator()
-          }
-          
-          Button(action: {
-            self.save()
-          }) {
-            HStack {
-              Text("Submit Question")
-                .frame(minWidth: 0, maxWidth: .infinity)
-                .frame(height: 44)
-                .foregroundColor(.white)
-                .font(.body)
-                .background(Color.blue)
-                .cornerRadius(4)
-            }
-          }.disabled(self.saving)
-        }
       }
-      .navigationBarItems(trailing: Button(action: {
-        self.isVisible = false
-      }) {
-        Text("Cancel")
-      })
+      .navigationBarItems(
+        leading: Button("Cancel", action: self.cancel),
+        trailing: Button(saving ? "Submitting..." : "Submit", action: self.save).disabled(self.saving)
+      )
         .navigationBarTitle("Ask question")
         .padding(.bottom, keyboard.currentHeight)
     }
   }
   
+  func cancel() {
+    self.isVisible = false
+  }
+  
   func save() {
-//    guard titleWordsCount > 0
-//      && titleWordsCount <= 10
-//      && textWordsCount > 0
-//      && textWordsCount <= 100 else { return }
-//    
+    // Simple validation
+    guard title.words > 0
+      && title.words <= 10
+      && text.words > 0
+      && text.words <= 100 else { return }
+    
     let question = Question(
       id: "",
       uid: sessionStore.session!.uid,
@@ -86,22 +67,12 @@ struct QuestionFormView: View {
     
     self.saving = true
     store.addQuestion(question) { error in
-      if let error = error {
-        self.error = error.localizedDescription
-        self.saving = false
-        
-        return
-      }
+      print("Saving....")
+      self.saving = false
+      self.isVisible = false
       
-      self.store.load() { err in
-        self.saving = false
-        
-        if let err = err {
-          self.error = err.localizedDescription
-          return
-        }
-        
-        self.isVisible = false
+      if let error = error {
+        print("\(error)")
       }
     }
   }

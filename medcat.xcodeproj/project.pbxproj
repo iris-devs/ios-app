@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		7D9E65A70545A8E1C9A3DC20 /* Pods_medcat.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C7376B8F101A8458D978B46 /* Pods_medcat.framework */; };
 		A77C4752242E42C7008F94E9 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = A77C4754242E42C7008F94E9 /* Localizable.strings */; };
+		DF3DE4672431165B0018D562 /* QuestionValidationMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF3DE4662431165B0018D562 /* QuestionValidationMessage.swift */; };
 		DF4056E4242CB25B00FD3388 /* ScrollWithRefresh.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF4056E3242CB25B00FD3388 /* ScrollWithRefresh.swift */; };
 		DF4056E6242CC33900FD3388 /* AuthorDateRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF4056E5242CC33800FD3388 /* AuthorDateRow.swift */; };
 		DF4056E8242D038700FD3388 /* FiltersAndSortingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF4056E7242D038700FD3388 /* FiltersAndSortingView.swift */; };
@@ -35,6 +36,11 @@
 		DFAD981F24295EF700BAF22B /* SwiftUIX in Frameworks */ = {isa = PBXBuildFile; productRef = DFAD981E24295EF700BAF22B /* SwiftUIX */; };
 		DFAD9821242967BB00BAF22B /* UserProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFAD9820242967BB00BAF22B /* UserProfileView.swift */; };
 		DFAD98232429690500BAF22B /* UserProfileSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFAD98222429690500BAF22B /* UserProfileSectionView.swift */; };
+		DFB8A225242F7E9C003EEFAE /* AccountButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFB8A224242F7E9C003EEFAE /* AccountButton.swift */; };
+		DFB8A227242F806F003EEFAE /* ChangePasswordForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFB8A226242F806F003EEFAE /* ChangePasswordForm.swift */; };
+		DFB8A22A242FDAE6003EEFAE /* PasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFB8A229242FDAE6003EEFAE /* PasswordViewModel.swift */; };
+		DFB8A22E2430C414003EEFAE /* QuestionValueViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFB8A22D2430C414003EEFAE /* QuestionValueViewModel.swift */; };
+		DFB8A2302430C5E7003EEFAE /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFB8A22F2430C5E7003EEFAE /* String+Extension.swift */; };
 		DFCF0375242A690F005C3C47 /* MarkdownView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFCF0374242A690F005C3C47 /* MarkdownView.swift */; };
 		DFE9D3F6242B64EA00AAABAC /* QuestionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFE9D3F5242B64EA00AAABAC /* QuestionsView.swift */; };
 		DFE9D3F8242B672600AAABAC /* NoDataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFE9D3F7242B672600AAABAC /* NoDataView.swift */; };
@@ -55,6 +61,7 @@
 		A77C4755242E42D2008F94E9 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		A77C4756242E42D2008F94E9 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
 		D72013FEBCFC61022E1938D1 /* Pods_medcat_medcatUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_medcat_medcatUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DF3DE4662431165B0018D562 /* QuestionValidationMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionValidationMessage.swift; sourceTree = "<group>"; };
 		DF4056E3242CB25B00FD3388 /* ScrollWithRefresh.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollWithRefresh.swift; sourceTree = "<group>"; };
 		DF4056E5242CC33800FD3388 /* AuthorDateRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorDateRow.swift; sourceTree = "<group>"; };
 		DF4056E7242D038700FD3388 /* FiltersAndSortingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FiltersAndSortingView.swift; sourceTree = "<group>"; };
@@ -80,6 +87,11 @@
 		DFAD98172429375D00BAF22B /* NewsDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsDetailView.swift; sourceTree = "<group>"; };
 		DFAD9820242967BB00BAF22B /* UserProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileView.swift; sourceTree = "<group>"; };
 		DFAD98222429690500BAF22B /* UserProfileSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileSectionView.swift; sourceTree = "<group>"; };
+		DFB8A224242F7E9C003EEFAE /* AccountButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountButton.swift; sourceTree = "<group>"; };
+		DFB8A226242F806F003EEFAE /* ChangePasswordForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordForm.swift; sourceTree = "<group>"; };
+		DFB8A229242FDAE6003EEFAE /* PasswordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordViewModel.swift; sourceTree = "<group>"; };
+		DFB8A22D2430C414003EEFAE /* QuestionValueViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionValueViewModel.swift; sourceTree = "<group>"; };
+		DFB8A22F2430C5E7003EEFAE /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 		DFCF0374242A690F005C3C47 /* MarkdownView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkdownView.swift; sourceTree = "<group>"; };
 		DFE9D3F5242B64EA00AAABAC /* QuestionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionsView.swift; sourceTree = "<group>"; };
 		DFE9D3F7242B672600AAABAC /* NoDataView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoDataView.swift; sourceTree = "<group>"; };
@@ -114,6 +126,14 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		DF3DE46824311A400018D562 /* extension */ = {
+			isa = PBXGroup;
+			children = (
+				DFB8A22F2430C5E7003EEFAE /* String+Extension.swift */,
+			);
+			path = extension;
+			sourceTree = "<group>";
+		};
 		DF4056EB242D177500FD3388 /* utils */ = {
 			isa = PBXGroup;
 			children = (
@@ -143,13 +163,15 @@
 		DFAD97C82428DE7C00BAF22B /* medcat */ = {
 			isa = PBXGroup;
 			children = (
-				DFAD97CF2428DE7D00BAF22B /* Assets.xcassets */,
-				DFAD97D12428DE7D00BAF22B /* Preview Content */,
 				DFAD98072428EAB900BAF22B /* GoogleService-Info.plist */,
 				DFAD97D72428DE7D00BAF22B /* Info.plist */,
+				DFAD97CF2428DE7D00BAF22B /* Assets.xcassets */,
 				DFAD97D42428DE7D00BAF22B /* LaunchScreen.storyboard */,
 				A77C4754242E42C7008F94E9 /* Localizable.strings */,
 				DFAD981C24294A1900BAF22B /* delegates */,
+				DF3DE46824311A400018D562 /* extension */,
+				DFB8A228242FDAAE003EEFAE /* model */,
+				DFAD97D12428DE7D00BAF22B /* Preview Content */,
 				DFAD98102429190100BAF22B /* stores */,
 				DF4056EB242D177500FD3388 /* utils */,
 				DFAD980F242914FC00BAF22B /* views */,
@@ -200,6 +222,15 @@
 			path = delegates;
 			sourceTree = "<group>";
 		};
+		DFB8A228242FDAAE003EEFAE /* model */ = {
+			isa = PBXGroup;
+			children = (
+				DFB8A229242FDAE6003EEFAE /* PasswordViewModel.swift */,
+				DFB8A22D2430C414003EEFAE /* QuestionValueViewModel.swift */,
+			);
+			path = model;
+			sourceTree = "<group>";
+		};
 		DFE9D3FF242BC51000AAABAC /* question */ = {
 			isa = PBXGroup;
 			children = (
@@ -208,6 +239,7 @@
 				DFA5529F242A3152004CA59D /* QuestionFormView.swift */,
 				DFE9D3FD242B9C7C00AAABAC /* QuestionRowView.swift */,
 				DFE9D3F5242B64EA00AAABAC /* QuestionsView.swift */,
+				DF3DE4662431165B0018D562 /* QuestionValidationMessage.swift */,
 			);
 			path = question;
 			sourceTree = "<group>";
@@ -215,7 +247,9 @@
 		DFE9D400242BC51A00AAABAC /* account */ = {
 			isa = PBXGroup;
 			children = (
+				DFB8A224242F7E9C003EEFAE /* AccountButton.swift */,
 				DFAD98052428E90B00BAF22B /* AccountView.swift */,
+				DFB8A226242F806F003EEFAE /* ChangePasswordForm.swift */,
 				DFAD98032428E5E300BAF22B /* SignInView.swift */,
 				DFAD98222429690500BAF22B /* UserProfileSectionView.swift */,
 				DFAD9820242967BB00BAF22B /* UserProfileView.swift */,
@@ -376,13 +410,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				DFA0D729242BC89B007F8FCF /* Formatter.swift in Sources */,
+				DFB8A22A242FDAE6003EEFAE /* PasswordViewModel.swift in Sources */,
 				DFAD98062428E90B00BAF22B /* AccountView.swift in Sources */,
 				DFCF0375242A690F005C3C47 /* MarkdownView.swift in Sources */,
 				DF4056E8242D038700FD3388 /* FiltersAndSortingView.swift in Sources */,
+				DF3DE4672431165B0018D562 /* QuestionValidationMessage.swift in Sources */,
 				DFAD98162429266700BAF22B /* NewsListView.swift in Sources */,
 				DF4056E4242CB25B00FD3388 /* ScrollWithRefresh.swift in Sources */,
+				DFB8A2302430C5E7003EEFAE /* String+Extension.swift in Sources */,
 				DFAD97CA2428DE7C00BAF22B /* AppDelegate.swift in Sources */,
 				DFAD980E2429145900BAF22B /* MessagesView.swift in Sources */,
+				DFB8A227242F806F003EEFAE /* ChangePasswordForm.swift in Sources */,
 				DFE9D3FE242B9C7C00AAABAC /* QuestionRowView.swift in Sources */,
 				DFAD97CC2428DE7C00BAF22B /* SceneDelegate.swift in Sources */,
 				DFAD9821242967BB00BAF22B /* UserProfileView.swift in Sources */,
@@ -394,10 +432,12 @@
 				DFE9D3F8242B672600AAABAC /* NoDataView.swift in Sources */,
 				DFAD98002428E25100BAF22B /* SessionStore.swift in Sources */,
 				DF4056EA242D176900FD3388 /* KeyboardResponder.swift in Sources */,
+				DFB8A22E2430C414003EEFAE /* QuestionValueViewModel.swift in Sources */,
 				DFAD97CE2428DE7C00BAF22B /* ContentView.swift in Sources */,
 				DFAD98042428E5E300BAF22B /* SignInView.swift in Sources */,
 				DFAD98232429690500BAF22B /* UserProfileSectionView.swift in Sources */,
 				DFAD980C242910BF00BAF22B /* MessageStore.swift in Sources */,
+				DFB8A225242F7E9C003EEFAE /* AccountButton.swift in Sources */,
 				DFAD98182429375D00BAF22B /* NewsDetailView.swift in Sources */,
 				DF4056E6242CC33900FD3388 /* AuthorDateRow.swift in Sources */,
 			);

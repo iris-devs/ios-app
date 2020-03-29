@@ -9,29 +9,57 @@
 import Foundation
 import Combine
 
-class QuestionValueViewModel: ObservableObject {
-  @Published var value: String = ""
-  @Published var isValid = false
-  @Published var message = ""
+enum QuestionValueCheck {
+  case valid
+  case empty
+  case limitExceeded
+}
 
-  var max: Int = 10
+// Unfortunately doesn't work with TextView, not possible to use,
+// seems like SwiftUI bug
+class QuestionValueViewModel: ObservableObject {
+  var max: Int = 0
+
+  @Published var value = ""
+  @Published var message = ""
+  @Published var isValid = false
   
   private var cancellableSet: Set<AnyCancellable> = []
   
   init(max: Int) {
     self.max = max
-//    message = "\(value.words) / \(max) max words"
+
+    isValidPublisher
+      .receive(on: RunLoop.main)
+      .map { result -> String in
+        switch result {
+          case .empty:
+            return "Must not be empty"
+          case .limitExceeded:
+            return "\(self.value.words) / \(max) max words limit exceeded"
+          default:
+            return "\(self.value.words) / \(max) max words"
+        }
+    }
+    .assign(to: \.message, on: self)
+    .store(in: &cancellableSet)
+    
+    isValidPublisher
+      .receive(on: RunLoop.main)
+      .map { $0 == .valid }
+      .assign(to: \.isValid, on: self)
+      .store(in: &cancellableSet)
   }
   
-  private var isTitleEmpty: AnyPublisher<Bool, Never> {
+  private var isEmptyPublisher: AnyPublisher<Bool, Never> {
     $value
       .debounce(for: 0.2, scheduler: RunLoop.main)
       .removeDuplicates()
-      .map { $0 == "" }
+      .map { $0.isEmpty }
       .eraseToAnyPublisher()
   }
   
-  private var valueLimitExceeded: AnyPublisher<Bool, Never> {
+  private var valueLimitExceededPublisher: AnyPublisher<Bool, Never> {
     $value
       .debounce(for: 0.2, scheduler: RunLoop.main)
       .removeDuplicates()
@@ -39,11 +67,19 @@ class QuestionValueViewModel: ObservableObject {
       .eraseToAnyPublisher()
   }
   
-  private var message: AnyPublisher<String, Never> {
-    $value
-      .debounce(for: 0.2, scheduler: RunLoop.main)
-      .removeDuplicates()
-      .map { "\($0.words) / \(self.max) max words" }
-      .eraseToAnyPublisher()
+  private var isValidPublisher: AnyPublisher<QuestionValueCheck, Never> {
+    Publishers.CombineLatest(isEmptyPublisher, valueLimitExceededPublisher)
+      .map { isEmpty, limitExceeded in
+        if isEmpty {
+          return .empty
+        }
+        
+        if limitExceeded {
+          return .limitExceeded
+        }
+        
+        return .valid
+    }
+    .eraseToAnyPublisher()
   }
 }
