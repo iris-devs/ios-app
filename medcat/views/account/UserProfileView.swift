@@ -13,6 +13,7 @@ import SDWebImageSwiftUI
 
 struct UserProfileView: View {
   @EnvironmentObject var session: SessionStore
+  @State private var isPasswordFormVisible = false
   
   func signOut() {
     session.signOut()
@@ -51,18 +52,24 @@ struct UserProfileView: View {
             UserProfileSectionView(title: "State", text: user.state!)
           }
         }
-        .frame(minWidth: 0, maxWidth: .infinity)
         
-        HStack(spacing: 0) {
-          Spacer()
-          Button(action: signOut) {
-            Text("Sign Out")
-              .foregroundColor(.gray)
-              .padding(10)
+        VStack(alignment: .trailing, spacing: 10) {
+          HStack(spacing: 0) {
+            Spacer()
+            AccountButton("Change Password") {
+              self.isPasswordFormVisible = true
+            }
+            .popover(isPresented: $isPasswordFormVisible) {
+              ChangePasswordForm(isVisible: self.$isPasswordFormVisible)
+                .environmentObject(self.session)
+            }
           }
-          .border(Color.gray, width: 2)
+
+          HStack(spacing: 0) {
+            Spacer()
+            AccountButton("Sign Out", self.signOut)
+          }
         }
-        .frame(minWidth: 0, maxWidth: .infinity)
       }.padding(20)
     }.navigationBarTitle("My Account")
   }

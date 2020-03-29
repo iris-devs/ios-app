@@ -16,14 +16,6 @@ target 'medcat' do
   pod 'gRPC-Core', '= 1.21.0', :modular_headers => false
   pod 'SDWebImageSwiftUI'
   pod 'Down'
-
-  target 'medcatTests' do
-    inherit! :search_paths
-    # Pods for testing
-  end
-
-  target 'medcatUITests' do
-    # Pods for testing
-  end
+  pod 'Navajo-Swift'
 
 end
