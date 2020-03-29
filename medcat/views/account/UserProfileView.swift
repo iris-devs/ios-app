@@ -59,7 +59,7 @@ struct UserProfileView: View {
             AccountButton("Change Password") {
               self.isPasswordFormVisible = true
             }
-            .popover(isPresented: $isPasswordFormVisible) {
+            .sheet(isPresented: $isPasswordFormVisible) {
               ChangePasswordForm(isVisible: self.$isPasswordFormVisible)
                 .environmentObject(self.session)
             }

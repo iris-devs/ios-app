@@ -40,7 +40,7 @@ struct MessagesView: View {
               .frame(width: 16, height: 16)
             Text("Ask Question")
           }
-        }.popover(isPresented: $isFormVisible) {
+        }.sheet(isPresented: $isFormVisible) {
           QuestionFormView(isVisible: self.$isFormVisible)
             .environmentObject(self.sessionStore)
         }
