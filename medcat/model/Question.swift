@@ -19,15 +19,16 @@ struct Question: ConvertableModel {
   var likes: Int = 0
   var createdAt: Date?
   var answer: Answer?
+  var author: String?
   
   init(_ snapshot: QueryDocumentSnapshot) {
     self.id = snapshot.documentID
     self.uid = snapshot.get("uid") as? String ?? ""
     self.title = snapshot.get("title") as? String ?? ""
     self.body = snapshot.get("body") as? String ?? ""
-    
     self.likes = snapshot.get("likes") as? Int ?? 0
     self.createdAt = (snapshot.get("createdAt") as? Timestamp)?.dateValue()
+    self.author = snapshot.get("authorName") as? String
 
     var answer: Answer? = nil
     
@@ -44,12 +45,13 @@ struct Question: ConvertableModel {
     self.answer = answer
   }
   
-  init(id: String, uid: String, title: String, body: String, answer: Answer? = nil) {
+  init(id: String, uid: String, title: String, body: String, author: String? = nil, answer: Answer? = nil) {
     self.id = id
     self.uid = uid
     self.title = title
     self.body = body
     self.answer = answer
+    self.author = author
   }
   
   func toDictionary() -> Dictionary<String, Any> {
@@ -57,7 +59,8 @@ struct Question: ConvertableModel {
       "id": self.id,
       "uid": self.uid,
       "title": self.title,
-      "body": self.body
+      "body": self.body,
+      "createdAt": FieldValue.serverTimestamp()
     ]
   }
 }

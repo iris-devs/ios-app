@@ -38,14 +38,6 @@ struct QuestionRowView: View {
           
           Text(question.body)
             .font(.subheadline)
-          
-          if question.createdAt != nil {
-            HStack {
-              Text(Formatter.date.string(from: question.createdAt!))
-                .font(.caption)
-                .foregroundColor(.secondary)
-            }
-          }
         }
 
         Spacer()
@@ -79,6 +71,10 @@ struct QuestionRowView: View {
         }
       }
       .padding(.vertical, 5)
+      
+      AuthorDateRow(author: question.author ?? "", date: question.createdAt)
+        .padding(.bottom, 10)
+      
       if question.answer != nil {
         VStack(alignment: .leading, spacing: 10) {
           AuthorDateRow(author: question.answer!.author, date: question.answer!.createdAt)
