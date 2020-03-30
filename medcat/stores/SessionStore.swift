@@ -53,6 +53,10 @@ class SessionStore: ObservableObject {
     }
   }
   
+  func changePassword(_ password: String, handler: @escaping UserProfileChangeCallback) {
+    Auth.auth().currentUser?.updatePassword(to: password, completion: handler)
+  }
+  
   func unbind() {
     guard let handle = authHandle else { return }
     Auth.auth().removeStateDidChangeListener(handle)

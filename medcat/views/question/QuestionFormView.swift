@@ -9,142 +9,53 @@
 import SwiftUI
 import SwiftUIX
 
-func wordsCount(string: String) -> Int {
-  let chararacterSet = CharacterSet.whitespacesAndNewlines.union(.punctuationCharacters)
-  let components = string.components(separatedBy: chararacterSet)
-  let words = components.filter { !$0.isEmpty }
-  
-  return words.count
-}
-
 struct QuestionFormView: View {
   @Binding var isVisible: Bool
-  @State var title: String = ""
-  
-  private var titleWordsCount: Int {
-    return wordsCount(string: self.title)
-  }
-  
-  @State var text: String = ""
-  
-  private var textWordsCount: Int {
-    return wordsCount(string: self.text)
-  }
-  
-  @State var category = -1
-  @State var errorTitle: String?
-  @State var errorQuestion: String?
-  @State var saving: Bool = false
-  @State var error: String? = nil
-  
-  @ObservedObject private var store = QuestionStore.shared
   @EnvironmentObject private var sessionStore: SessionStore
+  @ObservedObject private var store = QuestionStore.shared
   @ObservedObject var keyboard = KeyboardResponder()
+  
+  @State var saving: Bool = false
+  @State var text: String = ""
+  @State var title: String = ""
   
   var body: some View {
     NavigationView {
-      ScrollView {
-        VStack(alignment: .leading, spacing: 20) {
-          if error != nil {
-            Text(error!)
-              .font(.body)
-              .foregroundColor(.red)
-          }
-          
-          VStack(alignment: .leading) {
-            HStack {
-              Text("Title".uppercased())
-                .font(.headline)
-              
-              Spacer()
-              Text("\(titleWordsCount) / 10 max words")
-                .font(.footnote)
-                .foregroundColor(titleWordsCount > 10 ? .red : .systemGray3)
-            }
-            
-            TextField("Enter Title here...", text: $title)
-              .font(.body)
-            
-            Divider().padding(.top, 10)
-          }
-          
-          //      VStack(alignment: .leading) {
-          //        HStack {
-          //          Text("Category".uppercased())
-          //            .font(.headline)
-          //
-          //          Spacer()
-          //          Text("optional")
-          //            .font(.footnote)
-          //            .foregroundColor(.systemGray3)
-          //        }
-          //
-          //        Picker(selection: $category, label: EmptyView()) {
-          //          ForEach(0..<self.store.categories.count, id: \.self) { index in
-          //            Text(self.store.categories[index].title)
-          //          }
-          //        }.pickerStyle(SegmentedPickerStyle())
-          //
-          //        Divider().padding(.top, 10)
-          //      }
-          
-          VStack(alignment: .leading) {
-            HStack {
-              Text("Question".uppercased())
-                .font(.headline)
-              
-              Spacer()
-              Text("\(textWordsCount) / 100 max words")
-                .font(.footnote)
-                .foregroundColor(textWordsCount > 100 ? .red : .systemGray3)
-            }
-            
-            TextView("Enter Question here...", text: $text)
-              .height(150)
-            
-            Divider().padding(.top, 10)
-          }
-          
-          VStack {
-            if saving {
-              ActivityIndicator()
-            }
-            
-            Button(action: {
-              self.save()
-            }) {
-              HStack {
-                Text("Submit Question")
-                  .frame(minWidth: 0, maxWidth: .infinity)
-                  .frame(height: 44)
-                  .foregroundColor(.white)
-                  .font(.body)
-                  .background(Color.blue)
-                  .cornerRadius(4)
-              }
-            }.disabled(self.saving)
-          }
-          
-          Spacer()
+      Form {
+        Section(
+          header: Text("Title"),
+          footer: QuestionValidationMessage(text: title, max: 10)
+        ) {
+          TextField("Enter Title here...", text: $title)
         }
-          
-        .padding(20)
+        
+        Section(
+          header: Text("Question"),
+          footer: QuestionValidationMessage(text: text, max: 100)
+        ) {
+          TextView("Enter Question here...", text: $text)
+            .frame(height: 100)
+        }
       }
-      .navigationBarItems(trailing: Button(action: {
-        self.isVisible = false
-      }) {
-        Text("Cancel")
-      })
+      .navigationBarItems(
+        leading: Button("Cancel", action: self.cancel),
+        trailing: Button(saving ? "Submitting..." : "Submit", action: self.save).disabled(self.saving)
+      )
         .navigationBarTitle("Ask question")
         .padding(.bottom, keyboard.currentHeight)
     }
   }
   
+  func cancel() {
+    self.isVisible = false
+  }
+  
   func save() {
-    guard titleWordsCount > 0
-      && titleWordsCount <= 10
-      && textWordsCount > 0
-      && textWordsCount <= 100 else { return }
+    // Simple validation
+    guard title.words > 0
+      && title.words <= 10
+      && text.words > 0
+      && text.words <= 100 else { return }
     
     let question = Question(
       id: "",
@@ -156,22 +67,12 @@ struct QuestionFormView: View {
     
     self.saving = true
     store.addQuestion(question) { error in
-      if let error = error {
-        self.error = error.localizedDescription
-        self.saving = false
-        
-        return
-      }
+      print("Saving....")
+      self.saving = false
+      self.isVisible = false
       
-      self.store.load() { err in
-        self.saving = false
-        
-        if let err = err {
-          self.error = err.localizedDescription
-          return
-        }
-        
-        self.isVisible = false
+      if let error = error {
+        print("\(error)")
       }
     }
   }

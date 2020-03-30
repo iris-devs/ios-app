@@ -285,6 +285,7 @@ PODS:
     - nanopb/encode (= 0.3.9011)
   - nanopb/decode (0.3.9011)
   - nanopb/encode (0.3.9011)
+  - Navajo-Swift (2.1.0)
   - PromisesObjC (1.2.8)
   - SDWebImage (5.6.1):
     - SDWebImage/Core (= 5.6.1)
@@ -302,6 +303,7 @@ DEPENDENCIES:
   - Firebase/Firestore
   - FirebaseFirestoreSwift
   - gRPC-Core (= 1.21.0)
+  - Navajo-Swift
   - SDWebImageSwiftUI
 
 SPEC REPOS:
@@ -329,6 +331,7 @@ SPEC REPOS:
     - GTMSessionFetcher
     - leveldb-library
     - nanopb
+    - Navajo-Swift
     - PromisesObjC
     - SDWebImage
     - SDWebImageSwiftUI
@@ -357,10 +360,11 @@ SPEC CHECKSUMS:
   GTMSessionFetcher: cea130bbfe5a7edc8d06d3f0d17288c32ffe9925
   leveldb-library: 55d93ee664b4007aac644a782d11da33fba316f7
   nanopb: 18003b5e52dab79db540fe93fe9579f399bd1ccd
+  Navajo-Swift: 57b93e73efbfbf452433efbff04402de56beff51
   PromisesObjC: c119f3cd559f50b7ae681fa59dc1acd19173b7e6
   SDWebImage: 7edb9c3ea661e77a66661f7f044de8c1b55d1120
   SDWebImageSwiftUI: cb319bb79973f3b30602c2c1b5c5356af5b3ad32
 
-PODFILE CHECKSUM: c5c35a78b7e56945ab5fca8b7d894cb9f343e2ee
+PODFILE CHECKSUM: dc7d2377a54be1ffa20461cef58936f1e109bdb8
 
 COCOAPODS: 1.9.1
