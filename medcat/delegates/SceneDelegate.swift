@@ -35,7 +35,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
       window.rootViewController = UIHostingController(
         rootView: contentView
           .environmentObject(SessionStore())
-          .environmentObject(QuestionStore())
       )
       
       self.window = window

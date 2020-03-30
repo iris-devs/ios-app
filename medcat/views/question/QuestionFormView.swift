@@ -12,8 +12,8 @@ import SwiftUIX
 struct QuestionFormView: View {
   @Binding var isVisible: Bool
   @EnvironmentObject private var sessionStore: SessionStore
-  @ObservedObject private var store = QuestionStore.shared
   @ObservedObject var keyboard = KeyboardResponder()
+  private let dataStore = DataStore<Question>()
   
   @State var saving: Bool = false
   @State var text: String = ""
@@ -61,12 +61,11 @@ struct QuestionFormView: View {
       id: "",
       uid: sessionStore.session!.uid,
       title: title,
-      category: "",
       body: text
     )
     
     self.saving = true
-    store.addQuestion(question) { error in
+    dataStore.add(question) { error in
       print("Saving....")
       self.saving = false
       self.isVisible = false

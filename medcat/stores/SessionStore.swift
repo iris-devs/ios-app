@@ -75,6 +75,7 @@ struct User {
   var state: String?
   var phone: String?
   var photoUrl: URL?
+  var roles: [String]?
   
   init(uid: String, email: String?, displayName: String?) {
     self.uid = uid
@@ -87,6 +88,7 @@ struct User {
     self.org = document.get("org") as? String
     self.state = document.get("state") as? String
     self.phone = document.get("phone") as? String
+    self.roles = document.get("roles") as? [String]
     
     if let photoUrl = document.get("photoUrl") as? String {
       self.photoUrl = URL(string: photoUrl)

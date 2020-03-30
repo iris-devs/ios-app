@@ -9,24 +9,25 @@
 import SwiftUI
 
 struct MessagesView: View {
-  @ObservedObject private var store = MessageStore()
+  @ObservedObject private var dataStore = DataStore<Message>()
   @EnvironmentObject private var sessionStore: SessionStore
   
   @State var isFormVisible = false
-    
+  var messages: [Message] {
+    dataStore.items.sorted(by: { $0.createdAt > $1.createdAt })
+  }
+  
   init() {
     UITableView.appearance().tableFooterView = UIView(frame: CGRect(x: 0, y: 0, width: 0, height: 1))
-    self.store.load()
   }
-    
   
   var body: some View {
     NavigationView {
       Group {
-        if store.messages.isEmpty {
+        if messages.isEmpty {
           NoDataView(text: "No News", imageName: "bolt.slash.fill")
         } else {
-          NewsListView(news: store.messages.sorted(by: { $0.createdAt > $1.createdAt }))
+          NewsListView(news: messages)
         }
       }
       .navigationBarTitle("News", displayMode: .large)
@@ -45,6 +46,8 @@ struct MessagesView: View {
             .environmentObject(self.sessionStore)
         }
       )
+    }.onAppear {
+      self.dataStore.subscribe(self.sessionStore.session)
     }
   }
 }

@@ -18,6 +18,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   ) -> Bool {
     // Configure firebase
     FirebaseApp.configure()
+    
+    UNUserNotificationCenter.current().delegate = self
 
     return true
   }
@@ -47,4 +49,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // Use this method to release any resources that were specific to the discarded scenes, as they will not return.
   }
   
+}
+
+extension AppDelegate: UNUserNotificationCenterDelegate {
+  func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+    
+    completionHandler([.alert, .badge, .sound])
+  }
 }

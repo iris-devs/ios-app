@@ -17,10 +17,11 @@ struct QuestionsView: View {
   @State private var filter: Int = 0
   
   @EnvironmentObject private var sessionStore: SessionStore
-  @ObservedObject private var store = QuestionStore.shared
+  @ObservedObject private var dataStore = DataStore<Question>()
+  @ObservedObject private var likesStore = DataStore<Like>(true)
   
   var filteredQuestions: [Question] {
-    var questions = self.store.questions
+    var questions = self.dataStore.items
     
     switch (self.filter) {
       case 1:
@@ -41,16 +42,6 @@ struct QuestionsView: View {
     return questions
   }
   
-  func toggleLike(_ id: String, isLiked: Bool, completion: ((Error?) -> ())?) {
-    guard let uid = sessionStore.session?.uid else { return }
-    
-    if isLiked {
-      store.like(id, uid: uid, completion: completion)
-    } else {
-      store.dislike(id, uid: uid, completion: completion)
-    }
-  }
-  
   var body: some View {
     NavigationView {
       VStack {
@@ -60,18 +51,11 @@ struct QuestionsView: View {
           List(filteredQuestions) { question in
             QuestionRowView(
               question,
-              likes: self.store.likes,
-              toogleLikeFunc: self.toggleLike
+              likes: self.likesStore.items
             )
           }
         }
       }
-      .onAppear(perform: {
-        self.store.listen()
-        if let uid = self.sessionStore.session?.uid {
-          self.store.reloadLikes(uid)
-        }
-      })
       .navigationBarTitle("Questions")
       .navigationBarItems(
         leading: Button(action: {
@@ -97,6 +81,9 @@ struct QuestionsView: View {
             .environmentObject(self.sessionStore)
         }
       )
+    }.onAppear {
+      self.dataStore.subscribe(self.sessionStore.session)
+      self.likesStore.subscribe(self.sessionStore.session)
     }
   }
 }
