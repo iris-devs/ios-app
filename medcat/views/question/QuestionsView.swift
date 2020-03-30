@@ -36,7 +36,8 @@ struct QuestionsView: View {
     switch (self.sorting) {
       case 1:
         questions = questions.sorted(by: { $0.likes > $1.likes })
-      default: break
+      default:
+        questions = questions.sorted(by: { $0.createdAt ?? Date() > $1.createdAt ?? Date() })
     }
     
     return questions
