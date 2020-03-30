@@ -23,6 +23,9 @@ struct Like: ConvertableModel {
   }
   
   func toDictionary() -> Dictionary<String, Any> {
-    ["id": self.id, "createdAt": FieldValue.serverTimestamp()]
+    [
+      "id": self.id,
+      "createdAt": FieldValue.serverTimestamp()
+    ]
   }
 }

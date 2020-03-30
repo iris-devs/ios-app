@@ -16,7 +16,6 @@
 		DF3DE49424321C130018D562 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF3DE49324321C130018D562 /* Message.swift */; };
 		DF3DE49624321D6C0018D562 /* Question.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF3DE49524321D6C0018D562 /* Question.swift */; };
 		DF3DE49824322B4E0018D562 /* Like.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF3DE49724322B4E0018D562 /* Like.swift */; };
-		DF4056E4242CB25B00FD3388 /* ScrollWithRefresh.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF4056E3242CB25B00FD3388 /* ScrollWithRefresh.swift */; };
 		DF4056E6242CC33900FD3388 /* AuthorDateRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF4056E5242CC33800FD3388 /* AuthorDateRow.swift */; };
 		DF4056E8242D038700FD3388 /* FiltersAndSortingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF4056E7242D038700FD3388 /* FiltersAndSortingView.swift */; };
 		DF4056EA242D176900FD3388 /* KeyboardResponder.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF4056E9242D176900FD3388 /* KeyboardResponder.swift */; };
@@ -72,7 +71,6 @@
 		DF3DE49324321C130018D562 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		DF3DE49524321D6C0018D562 /* Question.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Question.swift; sourceTree = "<group>"; };
 		DF3DE49724322B4E0018D562 /* Like.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Like.swift; sourceTree = "<group>"; };
-		DF4056E3242CB25B00FD3388 /* ScrollWithRefresh.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollWithRefresh.swift; sourceTree = "<group>"; };
 		DF4056E5242CC33800FD3388 /* AuthorDateRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorDateRow.swift; sourceTree = "<group>"; };
 		DF4056E7242D038700FD3388 /* FiltersAndSortingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FiltersAndSortingView.swift; sourceTree = "<group>"; };
 		DF4056E9242D176900FD3388 /* KeyboardResponder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardResponder.swift; sourceTree = "<group>"; };
@@ -204,7 +202,6 @@
 				DFA0D728242BC89B007F8FCF /* Formatter.swift */,
 				DFCF0374242A690F005C3C47 /* MarkdownView.swift */,
 				DFE9D3F7242B672600AAABAC /* NoDataView.swift */,
-				DF4056E3242CB25B00FD3388 /* ScrollWithRefresh.swift */,
 				DFE9D400242BC51A00AAABAC /* account */,
 				DFE9D401242BC52C00AAABAC /* news */,
 				DFE9D3FF242BC51000AAABAC /* question */,
@@ -432,7 +429,6 @@
 				DF4056E8242D038700FD3388 /* FiltersAndSortingView.swift in Sources */,
 				DF3DE4672431165B0018D562 /* QuestionValidationMessage.swift in Sources */,
 				DFAD98162429266700BAF22B /* NewsListView.swift in Sources */,
-				DF4056E4242CB25B00FD3388 /* ScrollWithRefresh.swift in Sources */,
 				DF3DE46A243140DA0018D562 /* Notifications.swift in Sources */,
 				DFB8A2302430C5E7003EEFAE /* String+Extension.swift in Sources */,
 				DFAD97CA2428DE7C00BAF22B /* AppDelegate.swift in Sources */,

@@ -28,7 +28,6 @@ class DataStore<T: Model>: ObservableObject {
     
     if listenOnUserCollection {
       query = db.collection("users").document(user.uid).collection(T.collectionName)
-      print("Subscribing to users/\(user.uid)/\(T.collectionName)")
     } else {
       var roles: [String] = ["public"]
       if let userRoles = user.roles {
@@ -36,9 +35,14 @@ class DataStore<T: Model>: ObservableObject {
       }
       
       query = db.collection(T.collectionName)
-        .whereField("roles", arrayContainsAny: roles + ["public"])
+        .whereField("roles", arrayContainsAny: roles)
       
-      print("Subscribing to \(T.collectionName)")
+      // Small hack, while firestore doesn't support OR queries
+      if T.self == Message.self {
+        query = query
+          .whereField("isPublished", isEqualTo: true)
+          .whereField("isDeleted", isEqualTo: false)
+      }
     }
     
     listener = query.addSnapshotListener { snapshot, error in
