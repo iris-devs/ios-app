@@ -65,7 +65,7 @@ struct QuestionsView: View {
           Image(systemName: (self.sorting > 0 || self.filter > 0) ?  "line.horizontal.3.decrease.circle.fill" : "line.horizontal.3.decrease.circle")
             .resizable()
             .frame(width: 16, height: 16)
-        }.popover(isPresented: $isFiltersVisible) {
+        }.sheet(isPresented: $isFiltersVisible) {
           FiltersAndSortingView(filter: self.$filter, sorting: self.$sorting, isVisible: self.$isFiltersVisible)
         },
         trailing: Button(action: {
