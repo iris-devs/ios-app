@@ -8,21 +8,25 @@
 
 import SwiftUI
 import SwiftUIX
+import FirebaseCrashlytics
 
 typealias ToggleLikeFunc = (String, Bool, ((Error?) -> ())?) -> Void
 
 struct QuestionRowView: View {
   var question: Question
   var isLiked: Bool
-  var toggleLike: ToggleLikeFunc?
+
+  @EnvironmentObject private var sessionStore: SessionStore
 
   @State private var isAnswerVisible = false
   @State private var isSending = false
   
-  init(_ question: Question, likes: [String] = [], toogleLikeFunc: ToggleLikeFunc? = nil) {
+  private var likesStore = DataStore<Like>(true)
+  
+  
+  init(_ question: Question, likes: [Like] = []) {
     self.question = question
-    self.isLiked = likes.contains(question.id)
-    self.toggleLike = toogleLikeFunc
+    self.isLiked = likes.contains(where: { $0.id == question.id })
   }
   
   var body: some View {
@@ -34,14 +38,6 @@ struct QuestionRowView: View {
           
           Text(question.body)
             .font(.subheadline)
-          
-          if question.createdAt != nil {
-            HStack {
-              Text(Formatter.date.string(from: question.createdAt!))
-                .font(.caption)
-                .foregroundColor(.secondary)
-            }
-          }
         }
 
         Spacer()
@@ -53,16 +49,31 @@ struct QuestionRowView: View {
         } else {
           LikesView(likes: question.likes, isLiked: isLiked, onLike: { isLiked in
             self.isSending = true
-            self.toggleLike?(self.question.id, isLiked) { error in
-              if let error = error {
-                print("Error: \(error)")
+            
+            if isLiked {
+              self.likesStore.set(Like(self.question.id), user: self.sessionStore.session!) { error in
+                self.isSending = false
+                if let error = error {
+                  print("Like error: \(error.localizedDescription)")
+                  Crashlytics.crashlytics().record(error: error)
+                }
               }
-              self.isSending = false
+            } else {
+              self.likesStore.delete(Like(self.question.id), from: self.sessionStore.session!) { error in
+                self.isSending = false
+                if let error = error {
+                  print("Dislike error: \(error.localizedDescription)")
+                  Crashlytics.crashlytics().record(error: error)
+                }
+              }
             }
           })
         }
       }
       .padding(.vertical, 5)
+      
+      AuthorDateRow(author: question.author ?? "", date: question.createdAt)
+        .padding(.bottom, 10)
       
       if question.answer != nil {
         VStack(alignment: .leading, spacing: 10) {
@@ -88,7 +99,6 @@ struct QuestionRowView_Previews: PreviewProvider {
       id: "",
       uid: "",
       title: "Question #1",
-      category: "coffee_break",
       body: """
 Question multiline
 body ...

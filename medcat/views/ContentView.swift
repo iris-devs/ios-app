@@ -9,11 +9,12 @@
 import SwiftUI
 
 struct ContentView: View {
-  @EnvironmentObject var session: SessionStore  
+  @EnvironmentObject var session: SessionStore
   @State private var selection = 0
   
   func getUser() {
     session.listen()
+    LocalNotificationManager.shared.checkIsAllowed()
   }
   
   var body: some View {
